@@ -1,4 +1,4 @@
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -50,6 +50,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    print("initteyim");
+
     getWeatherData();
   }
 

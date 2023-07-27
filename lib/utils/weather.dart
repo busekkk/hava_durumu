@@ -26,13 +26,13 @@ class WeatherData {
   int currentCondition;
 
   Future<void> getCurrentTemperature() async {
-    Response response = await get(
-        "https://api.openweathermap.org/data/2.5/weather?lat=${locationData.latitude}&lon=${locationData.longitude}&appid=${apikey}&units=metric"
-            as Uri);
+    var _uri = Uri.parse(
+        'https://api.openweathermap.org/data/2.5/weather?lat=${locationData.latitude}&lon=${locationData.longitude}&appid=${apikey}&units=metric');
+
+    Response response = await get(_uri);
 
     if (response.statusCode == 200) {
       String data = response.body;
-
       var currentWeather = jsonDecode(data);
 
       try {
@@ -57,8 +57,8 @@ class WeatherData {
           ),
           weatherImage: AssetImage('assets/bulutlu.png'));
     } else {
-      var now = new DateTime.now();
-      if (now.hour >= 19) {
+      var dateTime = DateTime.now();
+      if (dateTime.hour >= 19) {
         return WeatherDisplayData(
             weatherIcon: Icon(
               FontAwesomeIcons.moon,
