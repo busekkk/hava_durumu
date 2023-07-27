@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hava_durumu/screens/loading_screen.dart';
 
 void main() {
   runApp(const MyApp());

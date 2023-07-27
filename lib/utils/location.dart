@@ -3,8 +3,8 @@
 import 'package:location/location.dart';
 
 class LocationHelper {
-  double latitude;
-  double longitude;
+  late double latitude;
+  late double longitude;
 
   Future<void> getCurrentLocation() async {
     Location location = Location();
@@ -20,5 +20,19 @@ class LocationHelper {
         return;
       }
     }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    //izinler tamam
+    _locationData = await location.getLocation();
+    latitude = _locationData.latitude!;
+    longitude = _locationData.longitude!;
   }
 }
